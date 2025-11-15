@@ -1,5 +1,6 @@
 import React from "react";
 import { Form } from "react-router";
+import { toast } from "react-toastify";
 
 const AddBook = () => {
   const handleSubmit = (e) => {
@@ -17,8 +18,6 @@ const AddBook = () => {
       createdAt: new Date().toISOString(),
     };
 
-    console.log(formData);
-
     fetch("http://localhost:3000/allbooks", {
       method: "POST",
       headers: {
@@ -29,7 +28,7 @@ const AddBook = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("Book Added Successfully");
+          toast.success("Book Added Successfully");
           form.reset();
         }
       });

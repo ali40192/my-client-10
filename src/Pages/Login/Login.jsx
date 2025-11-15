@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser } = use(AuthContext);
@@ -16,7 +17,7 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("Logged in user: ", user);
+        toast.success("Logged in user: ", user);
         navigate(from);
         // ...
       })
