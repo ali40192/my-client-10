@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Card = ({ book }) => {
-  const { title, author, genre, rating, coverImage } = book;
+  const { title, author, genre, rating, coverImage, _id } = book;
+  console.log(_id);
+
   return (
     <div className="flex bg-gray-800 text-white rounded-lg shadow-lg max-w-sm mx-auto overflow-hidden hover:scale-105 duration-300 border border-b-gray-700">
       {/* --- Image Section (50% width) --- */}
@@ -38,9 +41,12 @@ const Card = ({ book }) => {
         </div>
 
         {/* Details Button */}
-        <button className="mt-2 w-full bg-orange-600 hover:bg-orange-500 transition-all duration-300 text-white py-2 rounded-lg font-semibold shadow-md">
+        <Link
+          to={`/bookdetails/${_id}`}
+          className="mt-2 w-full bg-orange-600 hover:bg-orange-500 transition-all duration-300 text-white p-2 rounded-lg font-semibold shadow-md"
+        >
           Book Details
-        </button>
+        </Link>
       </div>
     </div>
   );
