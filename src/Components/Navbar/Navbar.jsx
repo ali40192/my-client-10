@@ -32,9 +32,9 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-violet-700 font-bold" : ""
           }
-          to="/books"
+          to="/allbooks"
         >
-          Books
+          All Books
         </NavLink>
       </li>
       <li>
