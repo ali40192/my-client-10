@@ -21,7 +21,7 @@ const BookDetails = () => {
           {/* --- Content Section --- */}
           <div className="p-6 md:w-2/3">
             {/* Badge */}
-            <div className="inline-block bg-orange-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-3">
+            <div className="inline-block bg-[#1abc9c] text-white text-sm font-semibold px-4 py-1 rounded-full mb-3">
               More About the Book
             </div>
 
@@ -29,7 +29,7 @@ const BookDetails = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
 
             {/* Author */}
-            <p className="text-lg text-orange-600 font-medium mb-4">
+            <p className="text-lg text-[#e67e22] font-medium mb-4">
               by {author}
             </p>
 
@@ -41,13 +41,13 @@ const BookDetails = () => {
               {/* Update Button */}
               <Link
                 to={`/updatebook/${_id}`}
-                className="px-6 py-3 bg-blue-600 text-white font-semibold text-sm rounded-lg shadow hover:bg-blue-700 transition-all duration-300"
+                className="px-6 py-3 bg-[#1abc9c] text-white font-semibold text-sm rounded-lg shadow hover:bg-blue-700 transition-all duration-300"
               >
                 Update
               </Link>
 
               {/* Delete Button */}
-              <button className="px-6 py-3 bg-red-600 text-white font-semibold text-sm rounded-lg shadow hover:bg-red-700 transition-all duration-300">
+              <button className="px-6 py-3 bg-[#e67e22] text-white font-semibold text-sm rounded-lg shadow hover:bg-red-700 transition-all duration-300">
                 Delete
               </button>
             </div>

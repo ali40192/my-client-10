@@ -35,7 +35,7 @@ const Card = ({ book }) => {
 
           {/* Rating */}
           <div className="flex items-center mb-3">
-            <div className="text-green-500 text-lg mr-2">★★★★☆</div>
+            <div className="text-[#1abc9c] text-lg mr-2">★★★★☆</div>
             <span className="text-gray-400 text-xs">{rating}</span>
           </div>
         </div>
