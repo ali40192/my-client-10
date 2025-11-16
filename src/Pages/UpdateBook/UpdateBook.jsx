@@ -1,12 +1,13 @@
-import React from "react";
+import React, { use } from "react";
 import { Form, useLoaderData } from "react-router";
 import { toast } from "react-toastify";
+import AuthContext from "../../Contexts/AuthContext";
 
 const UpdateBook = () => {
   const oldData = useLoaderData();
   const { title, author, summary, coverImage, userEmail, genre, _id, rating } =
     oldData;
-
+  const { user } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,7 +19,7 @@ const UpdateBook = () => {
       rating: form.rating.value,
       summary: form.summary.value,
       coverImage: form.coverImage.value,
-      userEmail: form.email.value,
+      userEmail: user.email,
       createdAt: new Date().toISOString(),
     };
 
@@ -102,19 +103,6 @@ const UpdateBook = () => {
             name="coverImage"
             class="mt-1 p-2 w-full border rounded-md"
             type="text"
-          />
-        </div>
-
-        <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-600" for="email">
-            Email Address
-          </label>
-          <input
-            defaultValue={userEmail}
-            class="mt-1 p-2 w-full border rounded-md"
-            name="email"
-            id="email"
-            type="email"
           />
         </div>
 
