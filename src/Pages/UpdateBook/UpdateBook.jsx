@@ -1,10 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { Form, useLoaderData } from "react-router";
 import { toast } from "react-toastify";
 
 const UpdateBook = () => {
   const oldData = useLoaderData();
-  const { title, author, summary, coverImage, userEmail, genre, _id } = oldData;
+  const { title, author, summary, coverImage, userEmail, genre, _id, rating } =
+    oldData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +15,7 @@ const UpdateBook = () => {
       title: form.name.value,
       author: form.author.value,
       genre: form.genre.value,
-      rating: 0,
+      rating: form.rating.value,
       summary: form.summary.value,
       coverImage: form.coverImage.value,
       userEmail: form.email.value,
@@ -34,13 +35,13 @@ const UpdateBook = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Book Updated Successfully");
-          form.reset();
+          Form.reset();
         }
       });
   };
 
   return (
-    <div class="w-xl mx-auto relative overflow-hidden z-10 bg-white p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-[#e67e22] before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-[#f1c40f] after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
+    <div class="w-[60%] mx-auto relative overflow-hidden z-10 bg-white p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-[#e67e22] before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-[#f1c40f] after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
       <h2 class="text-2xl text-orange-500 font-bold mb-6">Update Your Book</h2>
 
       <form onSubmit={handleSubmit}>
@@ -75,6 +76,18 @@ const UpdateBook = () => {
           <input
             defaultValue={genre}
             name="genre"
+            class="mt-1 p-2 w-full border rounded-md"
+            type="text"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-600" for="name">
+            Rating
+          </label>
+          <input
+            defaultValue={rating}
+            name="rating"
             class="mt-1 p-2 w-full border rounded-md"
             type="text"
           />

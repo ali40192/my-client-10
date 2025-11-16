@@ -1,9 +1,46 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
+
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
   const book = useLoaderData();
   const { title, author, summary, coverImage, _id } = book;
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/allbooks/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+
+        navigate("/allbooks");
+      }
+    });
+    // Delete functionality to be implemented
+  };
 
   return (
     <div className="w-full bg-gray-300 py-10">
@@ -47,7 +84,10 @@ const BookDetails = () => {
               </Link>
 
               {/* Delete Button */}
-              <button className="px-6 py-3 bg-[#e67e22] text-white font-semibold text-sm rounded-lg shadow hover:bg-red-700 transition-all duration-300">
+              <button
+                onClick={handleDelete}
+                className="px-6 py-3 bg-[#e67e22] text-white font-semibold text-sm rounded-lg shadow hover:bg-red-700 transition-all duration-300"
+              >
                 Delete
               </button>
             </div>

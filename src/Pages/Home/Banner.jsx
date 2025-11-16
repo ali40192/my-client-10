@@ -86,9 +86,12 @@ const Banner = () => {
                   >
                     All Books
                   </Link>
-                  <button className="px-4 sm:px-6 py-2 sm:py-3 border border-white text-white rounded-lg hover:bg-white hover:text-black duration-300 w-full sm:w-auto">
+                  <Link
+                    to="/addbook"
+                    className="px-4 sm:px-6 py-2 sm:py-3 border border-white text-white rounded-lg hover:bg-white hover:text-black duration-300 w-full sm:w-auto"
+                  >
                     Create Book
-                  </button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>
