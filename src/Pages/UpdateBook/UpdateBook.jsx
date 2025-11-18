@@ -8,6 +8,8 @@ const UpdateBook = () => {
   const oldData = useLoaderData();
   const { title, author, summary, coverImage, genre, _id, rating } = oldData;
   const { user } = use(AuthContext);
+  console.log(user);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;

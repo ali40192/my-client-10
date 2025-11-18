@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
+import DropDown from "../DropDown/DropDown";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -94,16 +95,22 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
-        {user ? (
-          <Link onClick={handleSignout} to="/login" className="btn">
-            SignOut
-          </Link>
-        ) : (
-          <Link to="/login" className="btn">
-            Login
-          </Link>
-        )}
+      <div className="navbar-end flex items-center gap-4 flex-col md:flex-row">
+        <div className="pr">
+          <DropDown></DropDown>
+        </div>
+
+        <div>
+          {user ? (
+            <Link onClick={handleSignout} to="/login" className="btn">
+              SignOut
+            </Link>
+          ) : (
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
