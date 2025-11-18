@@ -22,7 +22,7 @@ const BookOfweek = () => {
               Ebook
             </span>
 
-            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-gray-900 text-white text-xs rounded-md hover:bg-gray-700">
+            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-gray-700">
               Read Now
             </button>
           </div>
@@ -38,7 +38,7 @@ const BookOfweek = () => {
 
         <div class="p-3 sm:p-4">
           <h3 class="text-base sm:text-lg font-semibold text-gray-800">
-            A fox
+            A fox Without tail
           </h3>
 
           <p class="text-xs sm:text-sm text-gray-500 mt-1">By Tom Hangton</p>
@@ -48,7 +48,7 @@ const BookOfweek = () => {
               Ebook
             </span>
 
-            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-gray-900 text-white text-xs rounded-md hover:bg-gray-700">
+            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-gray-700">
               Read Now
             </button>
           </div>
@@ -64,7 +64,7 @@ const BookOfweek = () => {
 
         <div class="p-3 sm:p-4">
           <h3 class="text-base sm:text-lg font-semibold text-gray-800">
-            Who Will Win
+            Who Will Win The race
           </h3>
 
           <p class="text-xs sm:text-sm text-gray-500 mt-1">By Nf Clay</p>
@@ -74,7 +74,7 @@ const BookOfweek = () => {
               Ebook
             </span>
 
-            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-gray-900 text-white text-xs rounded-md hover:bg-gray-700">
+            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-gray-700">
               Read Now
             </button>
           </div>
@@ -90,7 +90,7 @@ const BookOfweek = () => {
 
         <div class="p-3 sm:p-4">
           <h3 class="text-base sm:text-lg font-semibold text-gray-800">
-            Earthly Tales
+            Earthly Tales of Wisdom
           </h3>
 
           <p class="text-xs sm:text-sm text-gray-500 mt-1">By Lotlight</p>
@@ -100,7 +100,7 @@ const BookOfweek = () => {
               Ebook
             </span>
 
-            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-gray-900 text-white text-xs rounded-md hover:bg-gray-700">
+            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-gray-700">
               Read Now
             </button>
           </div>
@@ -116,7 +116,7 @@ const BookOfweek = () => {
 
         <div class="p-3 sm:p-4">
           <h3 class="text-base sm:text-lg font-semibold text-gray-800">
-            Young Minds
+            Young Minds Have Power
           </h3>
 
           <p class="text-xs sm:text-sm text-gray-500 mt-1">By Ragon</p>
@@ -126,7 +126,7 @@ const BookOfweek = () => {
               Ebook
             </span>
 
-            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-gray-900 text-white text-xs rounded-md hover:bg-gray-700">
+            <button class="px-2 py-1 sm:px-3 sm:py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-gray-700">
               Read Now
             </button>
           </div>

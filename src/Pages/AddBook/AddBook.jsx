@@ -1,10 +1,12 @@
 import React, { use } from "react";
-import { Form } from "react-router";
+import { Form, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import AuthContext from "../../Contexts/AuthContext";
 
 const AddBook = () => {
   const { user } = use(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const AddBook = () => {
         if (data.acknowledged) {
           toast.success("Book Added Successfully");
           form.reset();
+          navigate("/allbooks");
         }
       });
   };

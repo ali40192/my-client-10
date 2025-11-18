@@ -1,12 +1,12 @@
 import React, { use } from "react";
-import { Form, useLoaderData } from "react-router";
+import { Form, useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import AuthContext from "../../Contexts/AuthContext";
 
 const UpdateBook = () => {
+  const navigate = useNavigate();
   const oldData = useLoaderData();
-  const { title, author, summary, coverImage, userEmail, genre, _id, rating } =
-    oldData;
+  const { title, author, summary, coverImage, genre, _id, rating } = oldData;
   const { user } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +36,8 @@ const UpdateBook = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Book Updated Successfully");
-          Form.reset();
+          form.reset();
+          navigate("/allbooks");
         }
       });
   };
