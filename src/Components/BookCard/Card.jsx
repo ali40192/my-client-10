@@ -3,7 +3,6 @@ import { Link } from "react-router";
 
 const Card = ({ book }) => {
   const { title, author, genre, rating, coverImage, _id } = book;
-  console.log(_id);
 
   return (
     <div className="flex bg-gray-800 text-white rounded-lg shadow-lg max-w-sm mx-auto overflow-hidden hover:scale-105 duration-300 border border-b-gray-700">

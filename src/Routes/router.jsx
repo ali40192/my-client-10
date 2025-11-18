@@ -8,6 +8,7 @@ import AddBook from "../Pages/AddBook/AddBook";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import BookDetails from "../Pages/BookDetails/BookDetails";
 import UpdateBook from "../Pages/UpdateBook/UpdateBook";
+import MyBook from "../Pages/MyBook/MyBook";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/allbooks/${params.id}`),
+      },
+      {
+        path: "/mybooks",
+        element: (
+          <PrivateRoute>
+            <MyBook> </MyBook>
+          </PrivateRoute>
+        ),
       },
 
       {
