@@ -22,7 +22,7 @@ const AllBooks = () => {
         All Books
       </h1>
       <div className="flex justify-between  my-8">
-        <h1 className="font-bold text-xl text-white">
+        <h1 className="font-bold text-xl text-gray-600">
           Number of Books{" "}
           <span className="text-xs font-normal text-gray-500">
             ({allbooks.length})

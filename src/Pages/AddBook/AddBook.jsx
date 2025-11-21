@@ -33,7 +33,7 @@ const AddBook = () => {
     });
   };
   return (
-    <div class="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+    <div class="flex min-h-screen items-center justify-center bg-synthwave p-6">
       <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div class="relative mx-4 -mt-6 mb-4 grid h-28 place-items-center overflow-hidden rounded-xl bg-gradient-to-tr from-orange-600 to-orange-400 bg-clip-border text-white shadow-lg shadow-cyan-500/40">
           <h3 class="block font-sans text-3xl font-semibold leading-snug tracking-normal text-white antialiased">

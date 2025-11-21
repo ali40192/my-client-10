@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import DropDown from "../DropDown/DropDown";
+import Theme from "../Theme/Theme";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-violet-700 font-bold" : ""
+            isActive ? "text-orange-600 font-bold" : ""
           }
           to="/"
         >
@@ -32,7 +33,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-violet-700 font-bold" : ""
+            isActive ? "text-orange-600 font-bold" : ""
           }
           to="/allbooks"
         >
@@ -42,7 +43,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-violet-700 font-bold" : ""
+            isActive ? "text-orange-600 font-bold" : ""
           }
           to="/addbook"
         >
@@ -53,7 +54,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-violet-700 font-bold" : ""
+            isActive ? "text-orange-600 font-bold" : ""
           }
           to="/mybooks"
         >
@@ -95,7 +96,9 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
       <div className="navbar-end flex items-center gap-4 flex-col md:flex-row">
+        <Theme />
         <div className="pr">
           <DropDown></DropDown>
         </div>

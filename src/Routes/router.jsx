@@ -10,12 +10,14 @@ import BookDetails from "../Pages/BookDetails/BookDetails";
 import UpdateBook from "../Pages/UpdateBook/UpdateBook";
 import MyBook from "../Pages/MyBook/MyBook";
 import Error from "../Components/Error/Error";
+import Loader from "../Components/Loader/Loader";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
     errorElement: <Error></Error>,
+    hydrateFallbackElement: <Loader></Loader>,
     children: [
       {
         index: true,
