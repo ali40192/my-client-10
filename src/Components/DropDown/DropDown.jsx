@@ -10,7 +10,7 @@ const DropDown = () => {
         <div tabIndex={0} role="button" className=" avatar">
           <div className="w-10 rounded-full">
             <img
-              alt="Tailwind CSS Navbar component"
+              alt="profile"
               src={
                 user
                   ? user.photoURL
@@ -23,7 +23,7 @@ const DropDown = () => {
           tabIndex="-1"
           className="dropdown-content menu bg-base-100 rounded-box z-1 w-30 p-2 shadow-sm"
         >
-          <li>{user ? user.displayName : "Mohammad Ali"}</li>
+          <li>{user ? user.displayName : "User Not Login Yet"}</li>
         </ul>
       </div>
     </div>

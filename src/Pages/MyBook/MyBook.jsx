@@ -1,23 +1,27 @@
 import React, { use, useEffect, useState } from "react";
 import AuthContext from "../../Contexts/AuthContext";
 import Card from "../../Components/BookCard/Card";
+import axios from "axios";
+import Loader from "../../Components/Loader/Loader";
 
 const MyBook = () => {
   const { user } = use(AuthContext);
   const [mybooks, setMybooks] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // get my book data
-    fetch(`http://localhost:3000/mybooks?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setMybooks(data);
-        setLoading(false);
-      });
+    axios(`http://localhost:3000/mybooks?email=${user?.email}`).then((data) => {
+      setMybooks(data.data);
+      setLoading(false);
+    });
   }, [user?.email]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader></Loader>
+      </div>
+    );
   }
   return (
     <div>

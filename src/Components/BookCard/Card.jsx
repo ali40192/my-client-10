@@ -44,7 +44,7 @@ const Card = ({ book }) => {
           to={`/bookdetails/${_id}`}
           className="mt-2 w-full bg-orange-600 hover:bg-orange-500 transition-all duration-300 text-white p-2 rounded-lg font-semibold shadow-md"
         >
-          Book Details
+          View Details
         </Link>
       </div>
     </div>

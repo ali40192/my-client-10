@@ -21,7 +21,9 @@ const Home = () => {
           <Card key={book.id} book={book}></Card>
         ))}
       </div>
-      <h1 className="font-bold  text-3xl text-[#1abc9c]">Books of the Week</h1>
+      <h1 className="font-bold  text-3xl text-[#1abc9c]">
+        Literary Genres / book
+      </h1>
       <div>
         <BookOfweek></BookOfweek>
       </div>

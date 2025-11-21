@@ -4,7 +4,8 @@ import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { loginUser } = use(AuthContext);
+  const { loginUser, googleSignIn } = use(AuthContext);
+
   const location = useLocation();
   const from = location.state || "/";
   const navigate = useNavigate();
@@ -24,7 +25,21 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("Error during login: ", errorCode, errorMessage);
+        toast.error("Error during login: ", errorCode, errorMessage);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        toast.success("Google Sign-In successful: ", user);
+        navigate(from);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error("Error during Google Sign-In: ", errorCode, errorMessage);
       });
   };
   return (
@@ -58,7 +73,10 @@ const Login = () => {
           </Form>
           <div className="divider">OR</div>
           <div className="flex justify-center w-full">
-            <button className="btn w-full bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn w-full bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"

@@ -1,9 +1,12 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Registration = () => {
-  const { creatUser } = use(AuthContext);
+  const [error, setError] = useState("");
+
+  const { creatUser, googleSignIn } = use(AuthContext);
   const location = useLocation();
   const from = location.state || "/";
   const navigate = useNavigate();
@@ -14,20 +17,42 @@ const Registration = () => {
     const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long."
+      );
+      return;
+    }
+
     console.log(name, photoUrl, email, password);
     creatUser(email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
         // ...
-        console.log("Registered user: ", user);
+        toast.success("Registered user: ", user);
         navigate(from);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
-        console.error("Error during registration: ", errorCode, errorMessage);
+        toast.error("Error during registration: ", errorCode, errorMessage);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        toast.success("Google Sign-In successful: ", user);
+        navigate(from);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error("Error during Google Sign-In: ", errorCode, errorMessage);
       });
   };
   return (
@@ -43,6 +68,7 @@ const Registration = () => {
                 type="text"
                 className="input"
                 placeholder="Write Your Name"
+                required
               />
               <label className="label">PhotoUrl</label>
               <input
@@ -50,6 +76,7 @@ const Registration = () => {
                 type="text"
                 className="input"
                 placeholder="Photo Url"
+                required
               />
               <label className="label">Email</label>
               <input
@@ -57,6 +84,7 @@ const Registration = () => {
                 type="email"
                 className="input"
                 placeholder="Email"
+                required
               />
               <label className="label">Password</label>
               <input
@@ -65,6 +93,10 @@ const Registration = () => {
                 className="input"
                 placeholder="Password"
               />
+
+              <div>
+                <p className="text-xs text-red-500 font-mono">{error}</p>
+              </div>
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
@@ -75,7 +107,10 @@ const Registration = () => {
           </Form>
           <div className="divider">OR</div>
           <div className="flex justify-center w-full">
-            <button className="btn w-full bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn w-full bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"

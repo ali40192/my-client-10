@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { Form, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import AuthContext from "../../Contexts/AuthContext";
+import axios from "axios";
 
 const AddBook = () => {
   const { user } = use(AuthContext);
@@ -23,21 +24,13 @@ const AddBook = () => {
       createdAt: new Date().toISOString(),
     };
 
-    fetch("http://localhost:3000/allbooks", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Book Added Successfully");
-          form.reset();
-          navigate("/allbooks");
-        }
-      });
+    axios.post("http://localhost:3000/allbooks", formData).then((data) => {
+      if (data.data.acknowledged) {
+        toast.success("Book Added Successfully");
+        form.reset();
+        navigate("/allbooks");
+      }
+    });
   };
   return (
     <div class="flex min-h-screen items-center justify-center bg-gray-100 p-6">
