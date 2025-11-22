@@ -35,8 +35,8 @@ const AddBook = () => {
   return (
     <div class="flex min-h-screen items-center justify-center bg-synthwave p-6">
       <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-        <div class="relative mx-4 -mt-6 mb-4 grid h-28 place-items-center overflow-hidden rounded-xl bg-gradient-to-tr from-orange-600 to-orange-400 bg-clip-border text-white shadow-lg shadow-cyan-500/40">
-          <h3 class="block font-sans text-3xl font-semibold leading-snug tracking-normal text-white antialiased">
+        <div class="relative mx-4 -mt-6 mb-4 grid h-28 place-items-center overflow-hidden rounded-xl bg-[#658C58] bg-clip-border text-white shadow-lg shadow-cyan-500/40">
+          <h3 class="block font-sans text-3xl font-semibold leading-snug tracking-normal text-[#F0E491] antialiased">
             Add New Book
           </h3>
         </div>
@@ -103,7 +103,7 @@ const AddBook = () => {
             <button
               data-ripple-light="true"
               type="submit"
-              class="block w-full select-none rounded-lg bg-gradient-to-tr from-orange-600 to-orange-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-cyan-500/20 transition-all hover:shadow-lg hover:shadow-cyan-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              class="block w-full select-none rounded-lg bg-[#658C58] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-[#F0E491] shadow-md shadow-cyan-500/20 transition-all hover:shadow-lg hover:shadow-cyan-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             >
               Add Book
             </button>

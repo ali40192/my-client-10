@@ -18,11 +18,11 @@ const AllBooks = () => {
 
   return (
     <div className="w-[80%] mx-auto my-8">
-      <h1 className="text-4xl font-bold text-center text-[#1abc9c] mb-8">
-        All Books
-      </h1>
+      <div className="text-center border border-b-[#F0E491] p-4 w-[40%] mx-auto rounded-3xl">
+        <h1 className="text-3xl font-bold text-[#31694E]">All Books</h1>
+      </div>
       <div className="flex justify-between  my-8">
-        <h1 className="font-bold text-xl text-gray-600">
+        <h1 className="font-bold text-xl text-[#31694E]">
           Number of Books{" "}
           <span className="text-xs font-normal text-gray-500">
             ({allbooks.length})

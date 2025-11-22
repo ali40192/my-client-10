@@ -86,7 +86,7 @@ const BookDetails = () => {
             {/* --- Content Section --- */}
             <div className="p-6 md:w-2/3">
               {/* Badge */}
-              <div className="inline-block bg-[#1abc9c] text-white text-sm font-semibold px-4 py-1 rounded-full mb-3">
+              <div className="inline-block bg-[#31694E] text-white text-sm font-semibold px-4 py-1 rounded-full mb-3">
                 More About the Book
               </div>
 
@@ -106,7 +106,7 @@ const BookDetails = () => {
                 {/* Update Button */}
                 <Link
                   to={`/updatebook/${_id}`}
-                  className="px-6 py-3 bg-[#1abc9c] text-white font-semibold text-sm rounded-lg shadow hover:bg-blue-700 transition-all duration-300"
+                  className="px-6 py-3 bg-[#31694E] text-white font-semibold text-sm rounded-lg shadow hover:bg-[#84994F] transition-all duration-300"
                 >
                   Update
                 </Link>
@@ -114,7 +114,7 @@ const BookDetails = () => {
                 {/* Delete Button */}
                 <button
                   onClick={handleDelete}
-                  className="px-6 py-3 bg-[#e67e22] text-white font-semibold text-sm rounded-lg shadow hover:bg-red-700 transition-all duration-300"
+                  className="px-6 py-3 bg-[#A72703] text-white font-semibold text-sm rounded-lg shadow hover:bg-red-700 transition-all duration-300"
                 >
                   Delete
                 </button>
@@ -128,8 +128,8 @@ const BookDetails = () => {
         </div>
       </div>
 
-      <div className="bg-gray-200 p-10 rounded-lg">
-        <h1 className="text-2xl font-semibold">Comments</h1>
+      <div className="bg-[#F0E491] p-10 rounded-lg">
+        <h1 className="text-2xl text-[#31694E] font-semibold">Comments</h1>
         <div className="grid grid-cols-1 gap-3  p-5 rounded-lg">
           {comment.map((single) => (
             <GetComment key={single._id} single={single}></GetComment>
