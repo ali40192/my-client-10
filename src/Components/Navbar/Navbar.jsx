@@ -4,6 +4,7 @@ import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import DropDown from "../DropDown/DropDown";
 import Theme from "../Theme/Theme";
+import { GiBookmarklet } from "react-icons/gi";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li>
+      <li className="font-bold text-[#31694E]">
         <NavLink
           className={({ isActive }) =>
             isActive ? "text-orange-600 font-bold" : ""
@@ -30,7 +31,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li>
+      <li className="font-bold text-[#31694E]">
         <NavLink
           className={({ isActive }) =>
             isActive ? "text-orange-600 font-bold" : ""
@@ -40,7 +41,7 @@ const Navbar = () => {
           All Books
         </NavLink>
       </li>
-      <li>
+      <li className="font-bold text-[#31694E]">
         <NavLink
           className={({ isActive }) =>
             isActive ? "text-orange-600 font-bold" : ""
@@ -51,7 +52,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li>
+      <li className="font-bold text-[#31694E]">
         <NavLink
           className={({ isActive }) =>
             isActive ? "text-orange-600 font-bold" : ""
@@ -64,7 +65,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar md:px-8 bg-[#F0E491] shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -91,7 +92,14 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Book Haven</a>
+        <Link to="/" className="btn bg-[#658C58]">
+          <div className="flex items-center justify-center gap-1 max-w-sm w-full">
+            <span className="text-4xl font-bold text-[#95D5B2]">
+              <GiBookmarklet />
+            </span>
+            <h1 className="text-2xl font-bold text-[#F7F5F2]">Haven</h1>
+          </div>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -105,11 +113,15 @@ const Navbar = () => {
 
         <div>
           {user ? (
-            <Link onClick={handleSignout} to="/login" className="btn">
+            <Link
+              onClick={handleSignout}
+              to="/login"
+              className="btn bg-[#658C58] text-[#F7F5F2]"
+            >
               SignOut
             </Link>
           ) : (
-            <Link to="/login" className="btn">
+            <Link to="/login" className="btn bg-[#658C58] text-[#F7F5F2]">
               Login
             </Link>
           )}

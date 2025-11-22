@@ -14,7 +14,6 @@ const CreateComment = () => {
       userEmail: user.email,
       comment: e.target.comment.value,
     };
-    console.log(commentData);
 
     axios
       .post("http://localhost:3000/cratecomment", commentData)
@@ -22,6 +21,7 @@ const CreateComment = () => {
         if (data.data.acknowledged) {
           toast.success("Comment Added Successfully");
           e.target.reset();
+          window.location.reload();
         }
       });
   };

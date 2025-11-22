@@ -9,19 +9,19 @@ import { Link } from "react-router";
 const Banner = () => {
   const leftSlides = [
     {
-      img: "https://picsum.photos/1200/600?bookA",
+      img: "https://i.ibb.co.com/qLPv310L/sincerely-media-n-Grf-Kmtwv24-unsplash.jpg",
       title: "The Silent Reader",
       summary:
         "A detective unravels mysterious coded messages left behind by an unknown observer.",
     },
     {
-      img: "https://picsum.photos/1200/600?bookB",
+      img: "https://i.ibb.co.com/bMKTDJmy/janko-ferlic-sf-L-QOnmy00-unsplash.jpg",
       title: "Shadows of Time",
       summary:
         "A deep emotional journey connecting lost memories across generations.",
     },
     {
-      img: "https://picsum.photos/1200/600?bookC",
+      img: "https://i.ibb.co.com/TxTXnxC0/jaredd-craig-HH4-WBGNyltc-unsplash.jpg",
       title: "Beyond the Horizon",
       summary:
         "A futuristic interstellar adventure filled with discoveries and emotion.",
@@ -29,7 +29,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full sm:mt-5">
       <Swiper
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
@@ -55,7 +55,7 @@ const Banner = () => {
               />
 
               {/* Overlay for text */}
-              <div className="relative z-10 bg-black/40 p-4 sm:p-6 md:p-8 rounded-lg max-w-full md:max-w-xl text-white">
+              <div className="relative z-10 bg-black/40 p-4 sm:p-6 md:p-8 rounded-lg max-w-full md:max-w-xl text-[#F0E491]">
                 <motion.h1
                   className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3"
                   initial={{ y: 20, opacity: 0 }}
@@ -82,13 +82,13 @@ const Banner = () => {
                 >
                   <Link
                     to="/allbooks"
-                    className="px-4 sm:px-6 py-2 sm:py-3 bg-orange-600 text-white rounded-lg shadow hover:scale-105 duration-300 w-full sm:w-auto"
+                    className="px-4 sm:px-6 py-2 sm:py-3 font-bold bg-[#F0E491] text-[#31694E] rounded-lg shadow hover:scale-105 duration-300 w-full sm:w-auto"
                   >
                     All Books
                   </Link>
                   <Link
                     to="/addbook"
-                    className="px-4 sm:px-6 py-2 sm:py-3 border border-white text-white rounded-lg hover:bg-white hover:text-black duration-300 w-full sm:w-auto"
+                    className="px-4 sm:px-6 py-2 sm:py-3 border border-[#F0E491] text-[#F0E491] rounded-lg hover:bg-[#F0E491] hover:text-[#31694E] duration-300 w-full sm:w-auto"
                   >
                     Create Book
                   </Link>
