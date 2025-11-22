@@ -22,12 +22,16 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:3000/leatest-six"),
+        loader: () =>
+          fetch(
+            "https://assignment-10-server-three-kappa.vercel.app/leatest-six"
+          ),
       },
       {
         path: "/allbooks",
         Component: AllBooks,
-        loader: () => fetch("http://localhost:3000/allbooks"),
+        loader: () =>
+          fetch("https://assignment-10-server-three-kappa.vercel.app/allbooks"),
       },
 
       {
@@ -46,7 +50,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/allbooks/${params.id}`),
+          fetch(
+            `https://assignment-10-server-three-kappa.vercel.app/allbooks/${params.id}`
+          ),
       },
 
       {
@@ -57,7 +63,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/allbooks/${params.id}`),
+          fetch(
+            `https://assignment-10-server-three-kappa.vercel.app/allbooks/${params.id}`
+          ),
       },
       {
         path: "/mybooks",

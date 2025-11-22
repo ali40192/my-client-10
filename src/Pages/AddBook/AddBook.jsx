@@ -24,13 +24,18 @@ const AddBook = () => {
       createdAt: new Date().toISOString(),
     };
 
-    axios.post("http://localhost:3000/allbooks", formData).then((data) => {
-      if (data.data.acknowledged) {
-        toast.success("Book Added Successfully");
-        form.reset();
-        navigate("/allbooks");
-      }
-    });
+    axios
+      .post(
+        "https://assignment-10-server-three-kappa.vercel.app/allbooks",
+        formData
+      )
+      .then((data) => {
+        if (data.data.acknowledged) {
+          toast.success("Book Added Successfully");
+          form.reset();
+          navigate("/allbooks");
+        }
+      });
   };
   return (
     <div class="flex min-h-screen items-center justify-center bg-synthwave p-6">

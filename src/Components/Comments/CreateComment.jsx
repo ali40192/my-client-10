@@ -16,7 +16,10 @@ const CreateComment = () => {
     };
 
     axios
-      .post("http://localhost:3000/cratecomment", commentData)
+      .post(
+        "https://assignment-10-server-three-kappa.vercel.app/cratecomment",
+        commentData
+      )
       .then((data) => {
         if (data.data.acknowledged) {
           toast.success("Comment Added Successfully");

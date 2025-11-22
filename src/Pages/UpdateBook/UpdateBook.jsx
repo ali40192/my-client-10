@@ -27,18 +27,22 @@ const UpdateBook = () => {
 
     console.log(formData);
 
-    fetch(`http://localhost:3000/allbooks/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://assignment-10-server-three-kappa.vercel.app/allbooks/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Book Updated Successfully");
           form.reset();
+          window.location.reload();
           navigate("/allbooks");
         }
       });

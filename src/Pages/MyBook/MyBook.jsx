@@ -10,7 +10,9 @@ const MyBook = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios(`http://localhost:3000/mybooks?email=${user?.email}`).then((data) => {
+    axios(
+      `https://assignment-10-server-three-kappa.vercel.app/mybooks?email=${user?.email}`
+    ).then((data) => {
       setMybooks(data.data);
       setLoading(false);
     });

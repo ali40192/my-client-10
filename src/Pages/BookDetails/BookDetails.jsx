@@ -28,12 +28,15 @@ const BookDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/allbooks/${_id}`, {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
-          },
-        })
+        fetch(
+          `https://assignment-10-server-three-kappa.vercel.app/allbooks/${_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
@@ -53,12 +56,12 @@ const BookDetails = () => {
   // comment display
 
   useEffect(() => {
-    axios(`http://localhost:3000/getcomment?email=${user?.email}`).then(
-      (data) => {
-        setComment(data.data);
-        setLoading(false);
-      }
-    );
+    axios(
+      `https://assignment-10-server-three-kappa.vercel.app/getcomment?email=${user?.email}`
+    ).then((data) => {
+      setComment(data.data);
+      setLoading(false);
+    });
   }, [user?.email]);
 
   if (loading) {
