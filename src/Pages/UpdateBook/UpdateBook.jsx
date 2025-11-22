@@ -42,7 +42,6 @@ const UpdateBook = () => {
         if (data.acknowledged) {
           toast.success("Book Updated Successfully");
           form.reset();
-          window.location.reload();
           navigate("/allbooks");
         }
       });
