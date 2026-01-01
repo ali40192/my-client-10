@@ -17,7 +17,7 @@ This project focuses on performance, clean UI, and scalable architecture.
 
 
 
-![Project Screenshot](./screenshot.png)
+![Project Screenshot](./bookhaven.png)
 
 ---
 
