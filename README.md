@@ -1,16 +1,75 @@
-# React + Vite
+# 🌐 BOOK HAVEN
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **full-stack web application** built using the **MERN stack**.  
+This project focuses on performance, clean UI, and scalable architecture.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## React Compiler
+🔗 Live Website: relaxed-kitten-770364.netlify.app  
+🔗 Client Repository: https://github.com/ali40192/my-client-10.git
+🔗 Server Repository: https://github.com/ali40192/my-assignment -10-server.git
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Screenshot
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+![Project Screenshot](./screenshot.png)
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js  
+- Tailwind CSS  
+- DaisyUI  
+- React Router  
+
+### Backend
+- Node.js  
+- Express.js  
+- MongoDB  
+
+
+### Tools
+-  GitHub  
+- Firebase (Auth )  
+- Vercel / Netlify  
+
+---
+
+## ✨ Core Features
+
+
+- 📦 CRUD operations
+- 🔄 Real-time data update
+- 📱 Fully responsive design
+- ⚡ Optimized performance & clean UI
+
+---
+
+## 📦 Dependencies Used
+
+### Frontend
+- react
+- axios
+- tailwindcss
+- daisyui
+
+### Backend
+- express
+- mongodb
+- cors
+- dotenv
+
+---
+
+## ⚙️ How to Run the Project Locally
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/yourusername/project-name.git
