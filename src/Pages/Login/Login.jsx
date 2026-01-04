@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
+import { saveOrUpdateUser } from "../../utils";
 
 const Login = () => {
   const { loginUser, googleSignIn } = use(AuthContext);
@@ -29,18 +30,19 @@ const Login = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        const user = result.user;
-        toast.success("Google Sign-In successful: ", user);
-        navigate(from);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        toast.error("Error during Google Sign-In: ", errorCode, errorMessage);
+  const handleGoogleSignIn = async () => {
+    try {
+      const { user } = await googleSignIn();
+      await saveOrUpdateUser({
+        name: user.displayName,
+        email: user.email,
+        photoUrl: user.photoURL,
       });
+      toast.success("Google Sign-In successful 🎉");
+      navigate(from);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
   return (
     <div className="flex min-h-screen-[60px] items-center justify-center bg-gray-100 p-4">

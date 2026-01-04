@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import Card from "../../Components/BookCard/Card";
+// import useRole from "../../hooks/useRole";
 
 const AllBooks = () => {
+  // const [role] = useRole();
+  // console.log(role);
+
   const [sort, setSort] = useState("none");
   const allbooks = useLoaderData();
 
@@ -17,7 +21,7 @@ const AllBooks = () => {
   })();
 
   return (
-    <div className="w-[80%] mx-auto my-8">
+    <div className="w-[80%] mx-auto my-25">
       <div className="text-center border border-b-[#F0E491] p-4 w-[40%] mx-auto rounded-3xl">
         <h1 className="text-3xl font-bold text-[#31694E]">All Books</h1>
       </div>
@@ -46,7 +50,7 @@ const AllBooks = () => {
           </select>
         </label>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6 gap-6 w-full ">
         {sortItem.map((book) => (
           <Card key={book.id} book={book}></Card>
         ))}

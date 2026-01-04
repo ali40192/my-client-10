@@ -12,6 +12,11 @@ import MyBook from "../Pages/MyBook/MyBook";
 import Error from "../Components/Error/Error";
 import Loader from "../Components/Loader/Loader";
 
+import Dashboard from "../DashBoardLayout/Dashboard";
+import DashTable from "../DashBoardLayout/DashTable";
+import Statictis from "../DashBoardLayout/Statictis";
+import MyProfile from "../DashBoardLayout/MyProfile";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,14 +72,6 @@ const router = createBrowserRouter([
             `https://assignment-10-server-three-kappa.vercel.app/allbooks/${params.id}`
           ),
       },
-      {
-        path: "/mybooks",
-        element: (
-          <PrivateRoute>
-            <MyBook> </MyBook>
-          </PrivateRoute>
-        ),
-      },
 
       {
         path: "/login",
@@ -83,6 +80,32 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         Component: Registration,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard/statictis",
+        element: <Statictis></Statictis>,
+      },
+      {
+        path: "/dashboard/users",
+        element: <DashTable></DashTable>,
+      },
+      {
+        path: "/dashboard/mybooks",
+        element: (
+          <PrivateRoute>
+            <MyBook> </MyBook>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myprofile",
+        element: <MyProfile></MyProfile>,
       },
     ],
   },

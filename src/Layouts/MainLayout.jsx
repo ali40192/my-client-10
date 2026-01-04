@@ -5,7 +5,7 @@ import Footer from "../Components/Footer/Footer";
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-synthwave ">
+    <div className="min-h-screen flex flex-col justify-between bg-synthwave">
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>

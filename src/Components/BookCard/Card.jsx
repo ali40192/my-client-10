@@ -3,46 +3,76 @@ import { Link } from "react-router";
 
 const Card = ({ book }) => {
   const { title, author, genre, rating, coverImage, _id } = book;
+  const stars = Math.round(rating);
 
   return (
-    <div className="flex bg-[#31694E] text-white rounded-lg shadow-lg max-w-sm mx-auto overflow-hidden hover:scale-105 duration-300 border border-b-gray-700">
-      {/* --- Image Section (50% width) --- */}
-      <div className="relative w-[50%] ">
+    <div
+      className="
+        bg-white rounded-lg
+        shadow-sm hover:shadow-md
+        transition-all duration-300
+        max-w-sm mx-auto
+        overflow-hidden
+        hover:-translate-y-0.5
+        w-full
+      "
+    >
+      <div className="relative overflow-hidden">
         <img
-          className="h-full w-full object-cover"
           src={coverImage}
-          alt="Book Cover"
+          alt={title}
+          className="
+            w-full h-36 sm:h-40
+            object-cover
+            transition-transform duration-300
+            hover:scale-105
+          "
         />
 
         {/* Genre Badge */}
-        <div className="absolute top-0 left-0 bg-[#F0E491] text-[#31694E] font-bold py-1 px-3 rounded-br-lg text-sm shadow-xl">
+        <span className="absolute top-1.5 left-1.5 bg-amber-100 text-amber-700 text-[10px] font-semibold px-2 py-0.5 rounded shadow">
           {genre}
-        </div>
+        </span>
       </div>
 
-      {/* --- Content Section --- */}
-      <div className="p-4 flex flex-col justify-between ">
+      {/* 📖 Content — padding & gap কম */}
+      <div className="p-2 flex flex-col gap-1.5">
         <div>
-          {/* Title */}
-          <h3 className="text-lg font-bold leading-tight mb-1">{title}</h3>
+          <h3 className="text-sm font-semibold text-gray-800 line-clamp-2">
+            {title}
+          </h3>
 
-          {/* Author */}
-          <p className="text-sm text-amber-400 italic mb-2">By {author}</p>
-
-          {/* Genre */}
-          <p className="text-xs text-black font-bold mb-2">Genre: {genre}</p>
+          <p className="text-[11px] text-gray-500 mt-0.5">
+            by <span className="italic">{author}</span>
+          </p>
 
           {/* Rating */}
-          <div className="flex items-center mb-3">
-            <div className="text-amber-400 text-lg mr-2">★★★★☆</div>
-            <span className="text-black font-bold text-xs">{rating}</span>
+          <div className="flex items-center gap-0.5 mt-0.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span
+                key={i}
+                className={`text-xs ${
+                  i < stars ? "text-amber-400" : "text-gray-300"
+                }`}
+              >
+                ★
+              </span>
+            ))}
+            <span className="text-[11px] text-gray-500 ml-1">{rating}</span>
           </div>
         </div>
 
-        {/* Details Button */}
+        {/* 🔘 Button — compact */}
         <Link
           to={`/bookdetails/${_id}`}
-          className="mt-2 w-full  hover:bg-amber-200 transition-all duration-300 bg-[#F0E491] text-[#31694E] p-2 rounded-lg font-semibold shadow-md"
+          className="
+            btn btn-xs w-full
+            border border-[#eaf091]
+            bg-[#F0E491] text-[#31694E]
+            font-bold rounded-md
+            transition-all duration-300
+            hover:bg-[#e6dc70]
+          "
         >
           View Details
         </Link>

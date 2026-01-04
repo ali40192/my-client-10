@@ -20,9 +20,7 @@ const AboutBookhaven = () => {
         showcases.
       </p>
 
-      <button className="px-6 py-3 bg-[#31694E] text-white font-semibold rounded-lg shadow hover:bg-green-900 transition-all duration-300">
-        Explore More
-      </button>
+      
     </div>
   );
 };

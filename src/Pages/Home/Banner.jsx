@@ -29,7 +29,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full sm:mt-5">
+    <div className="w-full mt-15">
       <Swiper
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}

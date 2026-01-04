@@ -3,6 +3,7 @@ import AuthContext from "./AuthContext";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import {
@@ -49,6 +50,13 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleprovider);
   };
 
+  const UpdateUserprofile = (displayName, photoURL) => {
+    return updateProfile(auth.currentUser, {
+      displayName: displayName,
+      photoURL: photoURL,
+    });
+  };
+
   const authInfo = {
     creatUser,
     loginUser,
@@ -58,6 +66,7 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     googleSignIn,
+    UpdateUserprofile,
   };
   return <AuthContext value={authInfo}>{children}</AuthContext>;
 };
