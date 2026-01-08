@@ -5,12 +5,9 @@ import { toast } from "react-toastify";
 import DropDown from "../DropDown/DropDown";
 import Theme from "../Theme/Theme";
 import { GiBookmarklet } from "react-icons/gi";
-import useRole from "../../hooks/useRole";
-import Loader from "../Loader/Loader";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-  const [role, isRoleLoading] = useRole();
 
   const handleSignout = () => {
     signOutUser()
@@ -46,19 +43,6 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      {role === "admin" && (
-        <li className="font-bold text-[#31694E]">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "text-orange-600 font-bold" : ""
-            }
-            to="/addbook"
-          >
-            Add Book
-          </NavLink>
-        </li>
-      )}
-
       {user && (
         <li className="font-bold text-[#31694E]">
           <NavLink
@@ -74,10 +58,8 @@ const Navbar = () => {
     </>
   );
 
-  if (isRoleLoading) return <Loader />;
-
   return (
-    <div className="navbar md:px-8 bg-[#F0E491] shadow-sm fixed top-0 z-50 w-full mb-15">
+    <div className="navbar md:px-8 bg-[#F0E491] shadow-sm navbar-fixed w-full mb-15">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

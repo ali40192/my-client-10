@@ -1,21 +1,38 @@
-import { div } from "framer-motion/client";
-import React, { use, useEffect, useState } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router";
-
+import { use, useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import CreateComment from "../../Components/Comments/CreateComment";
 import GetComment from "../../Components/Comments/GetComment";
 import AuthContext from "../../Contexts/AuthContext";
 import axios from "axios";
-import Loader from "../../Components/Loader/Loader";
+import BookDetailsSkeleton from "../../Components/Skeleton/BookDetailsSkeleton";
 
 const BookDetails = () => {
-  const book = useLoaderData();
-  const { title, author, summary, coverImage, _id } = book;
+  const { id } = useParams();
   const navigate = useNavigate();
   const { user } = use(AuthContext);
   const [comment, setComment] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [commentsLoading, setCommentsLoading] = useState(true);
+
+  // Fetch book details with React Query
+  const {
+    data: book,
+    isLoading: bookLoading,
+    error,
+  } = useQuery({
+    queryKey: ["bookDetails", id],
+    queryFn: async () => {
+      const response = await fetch(
+        `https://assignment-10-server-three-kappa.vercel.app/allbooks/${id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch book details");
+      }
+      return response.json();
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
   const handleDelete = () => {
     Swal.fire({
@@ -29,7 +46,7 @@ const BookDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://assignment-10-server-three-kappa.vercel.app/allbooks/${_id}`,
+          `https://assignment-10-server-three-kappa.vercel.app/allbooks/${book._id}`,
           {
             method: "DELETE",
             headers: {
@@ -53,24 +70,67 @@ const BookDetails = () => {
     });
   };
 
-  // comment display
-
+  // Fetch comments
   useEffect(() => {
-    axios(
-      `https://assignment-10-server-three-kappa.vercel.app/getcomment?email=${user?.email}`
-    ).then((data) => {
-      setComment(data.data);
-      setLoading(false);
-    });
+    if (user?.email) {
+      axios(
+        `https://assignment-10-server-three-kappa.vercel.app/getcomment?email=${user?.email}`
+      ).then((data) => {
+        setComment(data.data);
+        setCommentsLoading(false);
+      });
+    }
   }, [user?.email]);
 
-  if (loading) {
+  // Show skeleton while loading
+  if (bookLoading) {
+    return <BookDetailsSkeleton />;
+  }
+
+  // Show error state
+  if (error) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader></Loader>
+      <div className="w-10/12 mx-auto py-10">
+        <div className="text-center p-8">
+          <h2 className="text-2xl font-bold text-red-500 mb-4">
+            Error Loading Book
+          </h2>
+          <p className="text-gray-600">
+            Failed to load book details. Please try again later.
+          </p>
+          <Link
+            to="/allbooks"
+            className="mt-4 inline-block px-6 py-2 bg-[#31694E] text-white rounded-lg hover:bg-[#84994F] transition-colors"
+          >
+            Back to All Books
+          </Link>
+        </div>
       </div>
     );
   }
+
+  if (!book) {
+    return (
+      <div className="w-10/12 mx-auto py-10">
+        <div className="text-center p-8">
+          <h2 className="text-2xl font-bold text-gray-500 mb-4">
+            Book Not Found
+          </h2>
+          <p className="text-gray-600">
+            The requested book could not be found.
+          </p>
+          <Link
+            to="/allbooks"
+            className="mt-4 inline-block px-6 py-2 bg-[#31694E] text-white rounded-lg hover:bg-[#84994F] transition-colors"
+          >
+            Back to All Books
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const { title, author, summary, coverImage, _id } = book;
 
   return (
     <div className="w-10/12 mx-auto">
@@ -122,21 +182,38 @@ const BookDetails = () => {
                   Delete
                 </button>
               </div>
-              <div className="w-full flex justify-start my-3 ">
-                {" "}
-                <CreateComment></CreateComment>
+              <div className="w-full flex justify-start my-3">
+                <CreateComment />
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Comments Section */}
       <div className="bg-[#F0E491] p-10 rounded-lg">
         <h1 className="text-2xl text-[#31694E] font-semibold">Comments</h1>
-        <div className="grid grid-cols-1 gap-3  p-5 rounded-lg">
-          {comment.map((single) => (
-            <GetComment key={single._id} single={single}></GetComment>
-          ))}
+        <div className="grid grid-cols-1 gap-3 p-5 rounded-lg">
+          {commentsLoading
+            ? // Show skeleton for comments
+              Array.from({ length: 3 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-4 rounded-lg border animate-pulse"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                    <div className="h-4 bg-gray-200 rounded w-32"></div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded w-full"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                  </div>
+                </div>
+              ))
+            : comment.map((single) => (
+                <GetComment key={single._id} single={single} />
+              ))}
         </div>
       </div>
     </div>

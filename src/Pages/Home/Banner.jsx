@@ -1,12 +1,16 @@
-import React from "react";
+import { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
+import AuthContext from "../../Contexts/AuthContext";
+import useRole from "../../hooks/useRole";
 
 import "swiper/css";
-import { Link } from "react-router";
 
 const Banner = () => {
+  const { user } = useContext(AuthContext);
+  const [role] = useRole();
   const leftSlides = [
     {
       img: "https://i.ibb.co.com/qLPv310L/sincerely-media-n-Grf-Kmtwv24-unsplash.jpg",
@@ -86,12 +90,22 @@ const Banner = () => {
                   >
                     All Books
                   </Link>
-                  <Link
-                    to="/addbook"
-                    className="px-4 sm:px-6 py-2 sm:py-3 border border-[#F0E491] text-[#F0E491] rounded-lg hover:bg-[#F0E491] hover:text-[#31694E] duration-300 w-full sm:w-auto"
-                  >
-                    Create Book
-                  </Link>
+                  {user && role === "admin" && (
+                    <Link
+                      to="/dashboard/addbook"
+                      className="px-4 sm:px-6 py-2 sm:py-3 border border-[#F0E491] text-[#F0E491] rounded-lg hover:bg-[#F0E491] hover:text-[#31694E] duration-300 w-full sm:w-auto"
+                    >
+                      Create Book
+                    </Link>
+                  )}
+                  {!user && (
+                    <Link
+                      to="/login"
+                      className="px-4 sm:px-6 py-2 sm:py-3 border border-[#F0E491] text-[#F0E491] rounded-lg hover:bg-[#F0E491] hover:text-[#31694E] duration-300 w-full sm:w-auto"
+                    >
+                      Login to Create
+                    </Link>
+                  )}
                 </motion.div>
               </div>
             </motion.div>

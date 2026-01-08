@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import { use } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -32,20 +32,38 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
+      console.log("Starting Google Sign-In...");
+      console.log("API URL:", import.meta.env.VITE_API_URL);
+
       const { user } = await googleSignIn();
-      await saveOrUpdateUser({
+      console.log("Google Sign-In successful, user:", user);
+
+      // Prepare user data for the API
+      const userData = {
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
-      });
+        photoURL: user.photoURL, // Changed from photoUrl to photoURL to match server expectation
+      };
+
+      console.log("Sending user data to API:", userData);
+      await saveOrUpdateUser(userData);
+
       toast.success("Google Sign-In successful 🎉");
       navigate(from);
     } catch (err) {
-      toast.error(err.message);
+      console.error("Google Sign-In Error:", err);
+      console.error("Error details:", {
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
+        url: err.config?.url,
+      });
+      toast.error(`Login failed: ${err.message}`);
     }
   };
   return (
-    <div className="flex min-h-screen-[60px] items-center justify-center bg-gray-100 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 py-8">
+      {/* Added py-8 for better vertical spacing */}
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <h1 className="text-center text-4xl font-bold">Login Now</h1>
         <div className="card-body">

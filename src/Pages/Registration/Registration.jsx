@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import { use, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -38,7 +38,7 @@ const Registration = () => {
       await saveOrUpdateUser({
         name,
         email,
-        photoUrl,
+        photoURL: photoUrl, // Changed from photoUrl to photoURL to match server expectation
       });
 
       toast.success("Registration successful");
@@ -52,20 +52,26 @@ const Registration = () => {
   const handleGoogleSignIn = async () => {
     try {
       const { user } = await googleSignIn();
-      await saveOrUpdateUser({
+
+      // Prepare user data for the API
+      const userData = {
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
-      });
+        photoURL: user.photoURL, // Changed from photoUrl to photoURL to match server expectation
+      };
+
+      await saveOrUpdateUser(userData);
       toast.success("Google Sign-In successful 🎉");
       navigate(from);
     } catch (err) {
-      toast.error(err.message);
+      console.error("Google Sign-In Error:", err);
+      toast.error(`Registration failed: ${err.message}`);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 py-8">
+      {/* Added py-8 for better vertical spacing */}
       <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
         <h1 className="text-center text-4xl font-bold mt-4">Registration</h1>
 

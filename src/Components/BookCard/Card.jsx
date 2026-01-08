@@ -1,7 +1,18 @@
-import React from "react";
 import { Link } from "react-router";
+import PropTypes from "prop-types";
 
 const Card = ({ book }) => {
+  // Add prop validation
+  if (!book) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm p-4 max-w-sm mx-auto">
+        <div className="text-center text-gray-500">
+          <p>Book data not available</p>
+        </div>
+      </div>
+    );
+  }
+
   const { title, author, genre, rating, coverImage, _id } = book;
   const stars = Math.round(rating);
 
@@ -79,6 +90,17 @@ const Card = ({ book }) => {
       </div>
     </div>
   );
+};
+
+Card.propTypes = {
+  book: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    coverImage: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Card;

@@ -13,7 +13,6 @@ import Error from "../Components/Error/Error";
 import Loader from "../Components/Loader/Loader";
 
 import Dashboard from "../DashBoardLayout/Dashboard";
-import DashTable from "../DashBoardLayout/DashTable";
 import Statictis from "../DashBoardLayout/Statictis";
 import MyProfile from "../DashBoardLayout/MyProfile";
 
@@ -27,26 +26,12 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () =>
-          fetch(
-            "https://assignment-10-server-three-kappa.vercel.app/leatest-six"
-          ),
       },
       {
         path: "/allbooks",
         Component: AllBooks,
-        loader: () =>
-          fetch("https://assignment-10-server-three-kappa.vercel.app/allbooks"),
       },
 
-      {
-        path: "/addbook",
-        element: (
-          <PrivateRoute>
-            <AddBook></AddBook>
-          </PrivateRoute>
-        ),
-      },
       {
         path: "/bookdetails/:id",
         element: (
@@ -54,10 +39,6 @@ const router = createBrowserRouter([
             <BookDetails></BookDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(
-            `https://assignment-10-server-three-kappa.vercel.app/allbooks/${params.id}`
-          ),
       },
 
       {
@@ -88,12 +69,17 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: "/dashboard/statictis",
+        path: "/dashboard/statistics",
         element: <Statictis></Statictis>,
       },
+
       {
-        path: "/dashboard/users",
-        element: <DashTable></DashTable>,
+        path: "/dashboard/addbook",
+        element: (
+          <PrivateRoute>
+            <AddBook></AddBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/mybooks",

@@ -23,19 +23,22 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && user?.accessToken) {
+    if (!loading && user) {
       // Add request interceptor
-      // const requestInterceptor = axiosInstance.interceptors.request.use(
-      //   (config) => {
-      //     config.headers.Authorization = `Bearer ${user.accessToken}`;
-      //     return config;
-      //   }
-      // );
       const requestInterceptor = axiosInstance.interceptors.request.use(
-        (config) => {
-          config.headers.Authorization = `Bearer ${user.accessToken}`;
-          config.headers.email = user.email; // email send
-          return config;
+        async (config) => {
+          try {
+            // Get Firebase ID token
+            const token = await user.getIdToken();
+            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.email = user.email;
+            return config;
+          } catch (error) {
+            console.error("Error getting Firebase token:", error);
+            // If token fails, still send the email for basic auth
+            config.headers.email = user.email;
+            return config;
+          }
         }
       );
 
@@ -65,4 +68,5 @@ const useAxiosSecure = () => {
 
   return axiosInstance;
 };
+
 export default useAxiosSecure;

@@ -1,14 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   LayoutDashboard,
-  Users,
   LogOut,
   UserCircle,
   Menu,
   X,
   BookAIcon,
-  Backpack,
   HomeIcon,
+  BookPlus,
 } from "lucide-react";
 
 import useAuth from "../hooks/useAuth";
@@ -49,27 +48,29 @@ const Dashboard = () => {
         } bg-slate-900 text-white transition-all duration-300 flex flex-col`}
       >
         <nav className="flex-1 p-4 space-y-2">
-          <NavLink to="/dashboard/statictis">
+          <NavLink to="/dashboard/statistics">
             {({ isActive }) => (
               <NavItem
                 icon={<LayoutDashboard size={20} />}
-                label="Statictis"
+                label="Statistics"
                 isOpen={isSidebarOpen}
                 active={isActive}
               />
             )}
           </NavLink>
 
-          <NavLink to="/dashboard/users">
-            {({ isActive }) => (
-              <NavItem
-                icon={<Users size={20} />}
-                label="Users"
-                isOpen={isSidebarOpen}
-                active={isActive}
-              />
-            )}
-          </NavLink>
+          {role === "admin" && (
+            <NavLink to="/dashboard/addbook">
+              {({ isActive }) => (
+                <NavItem
+                  icon={<BookPlus size={20} />}
+                  label="Add Book"
+                  isOpen={isSidebarOpen}
+                  active={isActive}
+                />
+              )}
+            </NavLink>
+          )}
 
           {role === "admin" && (
             <NavLink to="/dashboard/mybooks">
