@@ -20,9 +20,12 @@ const Home = () => {
     queryKey: ["latestBooks"],
     queryFn: async () => {
       const response = await fetch(
-        "https://assignment-10-server-three-kappa.vercel.app/leatest-six"
+        `${import.meta.env.VITE_API_URL}/latest-books`
       );
       if (!response.ok) {
+        console.error(
+          `Failed to fetch latest books: ${response.status} ${response.statusText}`
+        );
         throw new Error("Failed to fetch books");
       }
       return response.json();

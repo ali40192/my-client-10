@@ -1,11 +1,11 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../../Contexts/AuthContext";
 import { Navigate, useLocation } from "react-router";
 import Loader from "../Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
-  const { user, loading } = use(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">

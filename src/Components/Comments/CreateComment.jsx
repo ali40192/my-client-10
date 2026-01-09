@@ -1,11 +1,11 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { Form } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const CreateComment = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const commentData = {

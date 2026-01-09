@@ -1,11 +1,11 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { Form, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import AuthContext from "../../Contexts/AuthContext";
 import axios from "axios";
 
 const AddBook = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 

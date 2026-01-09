@@ -1,8 +1,8 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../../Contexts/AuthContext";
 
 const DropDown = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div>

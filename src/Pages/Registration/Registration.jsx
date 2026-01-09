@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useContext, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -7,7 +7,8 @@ import { saveOrUpdateUser } from "../../utils";
 const Registration = () => {
   const [error, setError] = useState("");
 
-  const { creatUser, googleSignIn, UpdateUserprofile } = use(AuthContext);
+  const { creatUser, googleSignIn, UpdateUserprofile } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";

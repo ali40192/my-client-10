@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
@@ -11,7 +11,7 @@ import BookDetailsSkeleton from "../../Components/Skeleton/BookDetailsSkeleton";
 const BookDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const [comment, setComment] = useState([]);
   const [commentsLoading, setCommentsLoading] = useState(true);
 

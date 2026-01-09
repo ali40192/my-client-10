@@ -14,13 +14,16 @@ const AllBooks = () => {
   } = useQuery({
     queryKey: ["allBooks"],
     queryFn: async () => {
-      const response = await fetch(
-        "https://assignment-10-server-three-kappa.vercel.app/allbooks"
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/allbooks`);
       if (!response.ok) {
+        console.error(
+          `Failed to fetch all books: ${response.status} ${response.statusText}`
+        );
         throw new Error("Failed to fetch books");
       }
-      return response.json();
+      const data = await response.json();
+      // Handle both array response and paginated response
+      return Array.isArray(data) ? data : data.books || [];
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

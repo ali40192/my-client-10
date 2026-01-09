@@ -1,11 +1,11 @@
-import { use } from "react";
+import { useContext } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import { saveOrUpdateUser } from "../../utils";
 
 const Login = () => {
-  const { loginUser, googleSignIn } = use(AuthContext);
+  const { loginUser, googleSignIn } = useContext(AuthContext);
 
   const location = useLocation();
   const from = location.state || "/";

@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { Form, useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import AuthContext from "../../Contexts/AuthContext";
@@ -7,7 +7,7 @@ const UpdateBook = () => {
   const navigate = useNavigate();
   const oldData = useLoaderData();
   const { title, author, summary, coverImage, genre, _id, rating } = oldData;
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
 
   const handleSubmit = (e) => {
